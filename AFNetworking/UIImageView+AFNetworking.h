@@ -25,7 +25,7 @@
 
 #import <Availability.h>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 
 /**

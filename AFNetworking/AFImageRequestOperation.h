@@ -25,7 +25,7 @@
 
 #import <Availability.h>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
     #import <UIKit/UIKit.h>
 #elif __MAC_OS_X_VERSION_MIN_REQUIRED 
     #import <Cocoa/Cocoa.h>
@@ -54,13 +54,13 @@
 /**
  An image constructed from the response data. If an error occurs during the request, `nil` will be returned, and the `error` property will be set to the error.
  */
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 @property (readonly, nonatomic, strong) UIImage *responseImage;
 #elif __MAC_OS_X_VERSION_MIN_REQUIRED
 @property (readonly, nonatomic, strong) NSImage *responseImage;
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 /**
  The scale factor used when interpreting the image data to construct `responseImage`. Specifying a scale factor of 1.0 results in an image whose size matches the pixel-based dimensions of the image. Applying a different scale factor changes the size of the image as reported by the size property. This is set to the value of scale of the main screen by default, which automatically scales images for retina displays, for instance.
  */
@@ -75,7 +75,7 @@
  
  @return A new image request operation
  */
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 + (AFImageRequestOperation *)imageRequestOperationWithRequest:(NSURLRequest *)urlRequest                
                                                       success:(void (^)(UIImage *image))success;
 #elif __MAC_OS_X_VERSION_MIN_REQUIRED
@@ -93,7 +93,7 @@
  
  @return A new image request operation
  */
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 + (AFImageRequestOperation *)imageRequestOperationWithRequest:(NSURLRequest *)urlRequest
                                          imageProcessingBlock:(UIImage *(^)(UIImage *image))imageProcessingBlock
                                                       success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image))success

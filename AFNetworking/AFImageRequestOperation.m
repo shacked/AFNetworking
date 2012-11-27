@@ -32,7 +32,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 }
 
 @interface AFImageRequestOperation ()
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 @property (readwrite, nonatomic, strong) UIImage *responseImage;
 #elif __MAC_OS_X_VERSION_MIN_REQUIRED 
 @property (readwrite, nonatomic, strong) NSImage *responseImage;
@@ -41,11 +41,11 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 
 @implementation AFImageRequestOperation
 @synthesize responseImage = _responseImage;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 @synthesize imageScale = _imageScale;
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 + (AFImageRequestOperation *)imageRequestOperationWithRequest:(NSURLRequest *)urlRequest                
                                                       success:(void (^)(UIImage *image))success
 {
@@ -68,7 +68,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 #endif
 
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 + (AFImageRequestOperation *)imageRequestOperationWithRequest:(NSURLRequest *)urlRequest
                                          imageProcessingBlock:(UIImage *(^)(UIImage *))imageProcessingBlock
                                                       success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image))success
@@ -137,7 +137,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
         return nil;
     }
         
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
     self.imageScale = [[UIScreen mainScreen] scale];
 #endif
     
@@ -145,7 +145,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 }
 
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
 - (UIImage *)responseImage {
     if (!_responseImage && [self.responseData length] > 0 && [self isFinished]) {
         UIImage *image = [UIImage imageWithData:self.responseData];
@@ -216,7 +216,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
                 }
             } else {            
                 if (success) {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#if TARGET_OS_IPHONE
                     UIImage *image = nil;
 #elif __MAC_OS_X_VERSION_MIN_REQUIRED
                     NSImage *image = nil;
